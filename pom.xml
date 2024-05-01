@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wzzy</groupId>
-    <artifactId>SystemStram</artifactId>
+    <artifactId>StreamFilm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SystemStram</name>
     <description>SystemStram</description>
