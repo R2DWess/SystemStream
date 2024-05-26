@@ -1,8 +1,9 @@
 package com.wzzy.virtuallibrary.usuarios.cadastrar.services;
 
 import com.wzzy.virtuallibrary.usuarios.cadastrar.model.CadastrarUserModel;
-import com.wzzy.virtuallibrary.usuarios.cadastrar.repository.CadastrarUserRepository;
-import jakarta.transaction.Transactional;
+import com.wzzy.virtuallibrary.usuarios.cadastrar.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,38 +13,38 @@ import java.util.UUID;
 @Service
 public class CadastrarUserService {
 
-    final
-    CadastrarUserRepository cadastrarUserRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    public CadastrarUserService(CadastrarUserRepository cadastrarUserRepository){
-        this.cadastrarUserRepository = cadastrarUserRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public boolean existsByCpf(String cpf) {
+        return userRepository.existsByCpf(cpf);
     }
 
-    @Transactional
-    public CadastrarUserModel save(CadastrarUserModel cadastrarUserModel) {
-        return cadastrarUserRepository.save(cadastrarUserModel);
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
     }
 
-    public boolean existsByCpf(String cpf){
-        return cadastrarUserRepository.existsByCpf(cpf);
+    public boolean existsBySocialname(String socialname) {
+        return userRepository.existsBySocialname(socialname);
     }
+
+    public CadastrarUserModel save(CadastrarUserModel user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
     public List<CadastrarUserModel> findAll() {
-        return cadastrarUserRepository.findAll();
+        return userRepository.findAll();
     }
 
     public Optional<CadastrarUserModel> findById(UUID id) {
-        return cadastrarUserRepository.findById(id);
+        return userRepository.findById(id);
     }
 
-    public boolean existsByEmail(String email){
-        return cadastrarUserRepository.existsByEmail(email);
-    }
-
-    public boolean existsBySocialname(String socialname){
-        return cadastrarUserRepository.existsBySocialname(socialname);
-    }
-    @Transactional
-    public void delete(CadastrarUserModel parkingSpotModel) {
-        cadastrarUserRepository.delete(parkingSpotModel);
+    public void delete(CadastrarUserModel user) {
+        userRepository.delete(user);
     }
 }

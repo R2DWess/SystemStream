@@ -1,27 +1,19 @@
 package com.wzzy.virtuallibrary.usuarios.cadastrar.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
+import com.wzzy.virtuallibrary.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtuallibrary.usuarios.cadastrar.services.CadastrarUserService;
 import com.wzzy.virtuallibrary.usuarios.login.services.LoginUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.wzzy.virtuallibrary.usuarios.cadastrar.model.CadastrarUserModel;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
@@ -33,13 +25,16 @@ public class CadastrarUserController {
     @Autowired
     LoginUserService loginUserService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public CadastrarUserController(CadastrarUserService cadastrarUserService) {
         this.cadastrarUserService = cadastrarUserService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody CadastrarUserModel CadastrarUserDto) {
-        boolean isRegistered = loginUserService.cadastrarUser(CadastrarUserDto);
+    public ResponseEntity<String> register(@RequestBody CadastrarUserModel cadastrarUserDto) {
+        boolean isRegistered = loginUserService.cadastrarUser(cadastrarUserDto);
         if (isRegistered) {
             return ResponseEntity.ok("Registration successful");
         } else {
@@ -61,6 +56,8 @@ public class CadastrarUserController {
         if (cadastrarUserService.existsBySocialname(cadastrarUserModel.getSocialname())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Social name is already in use!");
         }
+
+        cadastrarUserModel.setPassword(passwordEncoder.encode(cadastrarUserModel.getPassword()));
 
         CadastrarUserModel newUserModel = new CadastrarUserModel();
         BeanUtils.copyProperties(cadastrarUserModel, newUserModel);
@@ -100,6 +97,7 @@ public class CadastrarUserController {
         }
         CadastrarUserModel existingUserModel = userModelOptional.get();
         BeanUtils.copyProperties(cadastrarUserModel, existingUserModel);
+        existingUserModel.setPassword(passwordEncoder.encode(cadastrarUserModel.getPassword()));
         cadastrarUserService.save(existingUserModel);
         return ResponseEntity.status(HttpStatus.OK).body(cadastrarUserService.save(existingUserModel));
     }

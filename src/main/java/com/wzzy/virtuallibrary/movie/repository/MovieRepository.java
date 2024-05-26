@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface MovieRepository extends JpaRepository<Movie, UUID> {
     List<Movie> findByCategory(String category);
     Movie findByTitulo(String titulo);
+    Movie findAllBy();
 }

@@ -1,5 +1,6 @@
 package com.wzzy.virtuallibrary.usuarios.user;
 
+import com.wzzy.virtuallibrary.usuarios.cadastrar.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;

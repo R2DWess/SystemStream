@@ -30,7 +30,6 @@ public class MoviesController {
         return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.save(movie));
     }
 
-    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findAll());
