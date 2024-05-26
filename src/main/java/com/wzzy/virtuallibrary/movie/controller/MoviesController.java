@@ -6,6 +6,7 @@ import com.wzzy.virtuallibrary.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtuallibrary.usuarios.cadastrar.services.CadastrarUserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class MoviesController {
         return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.save(movie));
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findAll());
@@ -76,10 +78,9 @@ public class MoviesController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+
     @GetMapping("/title/{title}")
     public ResponseEntity<Movie> getMovieByTitle(@PathVariable String title) {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findByTitulo(title));
     }
-
-
 }

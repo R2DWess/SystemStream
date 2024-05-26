@@ -65,6 +65,7 @@ public class MoviesService {
     public List<Movie> findByCategory(String category) {
         return movieRepository.findByCategory(category);
     }
+
     public Movie findByTitulo(String titulo) {
         return movieRepository.findByTitulo(titulo);
     }
