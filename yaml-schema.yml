@@ -1,0 +1,34 @@
+paths:
+  /{id}:
+    get:
+      summary: Obtém um filme pelo ID
+      description: Retorna um único filme pelo seu ID, incluindo detalhes como diretor, atores e metascore.
+      parameters:
+        - name: id
+          in: path
+          description: Identificador único do filme.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Detalhes do filme retornados com sucesso.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+              example:    # Exemplo específico para esta resposta
+                id: 1
+                titulo: "Avatar"
+                ano: 2009
+                duracaoEmMinutos: 162
+                genero: ["Ação", "Aventura", "Fantasia"]
+                diretor: "James Cameron"
+                roteiristas: ["James Cameron"]
+                atores: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"]
+                poster: "https://xl.movieposterdb.com/09_08/2009/499549/xl_499549_cd69e2ea.jpg"
+                metascore: 83
+                videoUrl: "https://example.com/avatar.mp4"
+                category: "Aventura"
+        '404':
+          description: Filme não encontrado
