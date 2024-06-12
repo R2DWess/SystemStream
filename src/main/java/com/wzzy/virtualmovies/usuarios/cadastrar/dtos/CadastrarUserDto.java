@@ -2,11 +2,12 @@ package com.wzzy.virtualmovies.usuarios.cadastrar.dtos;
 
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 public class CadastrarUserDto {
 
-    private Long id;
+    private UUID id;
     private String password;
     private String cpf;
     private String fullname;

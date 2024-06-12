@@ -3,10 +3,11 @@ package com.wzzy.virtualmovies.movie.dto;
 import lombok.Data;
 
 import java.util.List;
-
+import java.util.UUID;
 
 @Data
 public class MoviesDto {
+    private UUID id;
     private String titulo;
     private int ano;
     private int duracaoEmMinutos;

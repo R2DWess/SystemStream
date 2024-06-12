@@ -12,5 +12,4 @@ public interface LoginUserRepository extends JpaRepository<LoginUserModel, UUID>
     boolean existsBySocialname(String socialname);
 
     Optional<LoginUserModel> findByEmail(String email);
-
 }

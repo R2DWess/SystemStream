@@ -70,6 +70,7 @@ public class MoviesController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+
     @GetMapping("/title/{title}")
     public ResponseEntity<List<Movie>> getMoviesByTitle(@PathVariable String title) {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findByTitulo(title));

@@ -43,7 +43,7 @@ public class CadastrarUserService {
         return cadastrarUserRepository.existsBySocialname(socialname);
     }
     @Transactional
-    public void delete(CadastrarUserModel parkingSpotModel) {
-        cadastrarUserRepository.delete(parkingSpotModel);
+    public void delete(CadastrarUserModel userModel) {
+        cadastrarUserRepository.delete(userModel);
     }
 }

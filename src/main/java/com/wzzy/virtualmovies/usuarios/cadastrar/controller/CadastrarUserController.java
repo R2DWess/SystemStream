@@ -30,8 +30,8 @@ public class CadastrarUserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody CadastrarUserModel CadastrarUserDto) {
-        boolean isRegistered = loginUserService.cadastrarUser(CadastrarUserDto);
+    public ResponseEntity<String> register(@RequestBody CadastrarUserModel cadastrarUserDto) {
+        boolean isRegistered = loginUserService.cadastrarUser(cadastrarUserDto);
         if (isRegistered) {
             return ResponseEntity.ok("Registration successful");
         } else {

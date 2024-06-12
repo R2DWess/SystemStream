@@ -4,15 +4,16 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
 public class Movie {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     private String titulo;
     private int ano;

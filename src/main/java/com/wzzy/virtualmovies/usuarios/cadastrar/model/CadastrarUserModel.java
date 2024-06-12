@@ -1,7 +1,5 @@
 package com.wzzy.virtualmovies.usuarios.cadastrar.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.wzzy.virtualmovies.movie.Movie;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,11 +17,9 @@ public class CadastrarUserModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private String id;
-
-    public CadastrarUserModel() {
-        this.id = UUID.randomUUID().toString();
-    }
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(nullable = false, length = 255)
     private String cpf;

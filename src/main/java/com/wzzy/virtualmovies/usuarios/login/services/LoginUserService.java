@@ -45,8 +45,8 @@ public class LoginUserService {
         return loginUserRepository.existsBySocialname(socialname);
     }
     @Transactional
-    public void delete(LoginUserModel parkingSpotModel) {
-        loginUserRepository.delete(parkingSpotModel);
+    public void delete(LoginUserModel userModel) {
+        loginUserRepository.delete(userModel);
     }
 
     public boolean validateLogin(String email, String password) {

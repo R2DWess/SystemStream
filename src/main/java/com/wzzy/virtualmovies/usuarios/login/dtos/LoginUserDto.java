@@ -1,37 +1,29 @@
 package com.wzzy.virtualmovies.usuarios.login.dtos;
 
-import java.time.LocalDate;
+import lombok.Data;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
+@Data
 public class LoginUserDto {
 
-    private Long id;
-
+    private UUID id;
     private String cpf;
-
     private String fullname;
-
     private String socialname;
-
     private LocalDate birthdate;
-
     private String rg;
-
     private String cellphone;
-
     private String email;
-
     private String password;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
-    }
-
-    public String getCpf() {
-        return cpf;
     }
 
     public void setCpf(String cpf) {

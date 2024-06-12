@@ -31,7 +31,6 @@ public class MoviesService {
                 .collect(Collectors.toList());
     }
 
-
     public Movie save(Movie movie) {
         return movieRepository.save(movie);
     }
