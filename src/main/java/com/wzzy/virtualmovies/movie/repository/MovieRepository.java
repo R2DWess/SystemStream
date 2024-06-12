@@ -9,5 +9,9 @@ import java.util.UUID;
 public interface MovieRepository extends JpaRepository<Movie, UUID> {
     List<Movie> findByCategory(String category);
     List<Movie> findByTitulo(String titulo);
+    List<Movie> findByDiretor(String diretor);
+    List<Movie> findByAno(int ano);
+    List<Movie> findByGenero(String genero);
+    List<Movie> findByMetascoreGreaterThan(int metascore);
 
 }

@@ -22,7 +22,7 @@ public class CadastrarUserController {
     final
     CadastrarUserService cadastrarUserService;
 
-    @Autowired // Autowire the LoginUserService
+    @Autowired
     LoginUserService loginUserService;
 
     public CadastrarUserController(CadastrarUserService cadastrarUserService) {
