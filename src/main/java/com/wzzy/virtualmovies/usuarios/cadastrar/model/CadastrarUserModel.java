@@ -7,7 +7,6 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -17,9 +16,8 @@ public class CadastrarUserModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(nullable = false, length = 255)
     private String cpf;

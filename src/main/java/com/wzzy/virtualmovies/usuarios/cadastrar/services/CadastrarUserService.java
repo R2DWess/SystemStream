@@ -46,4 +46,9 @@ public class CadastrarUserService {
     public void delete(CadastrarUserModel userModel) {
         cadastrarUserRepository.delete(userModel);
     }
+
+    public Optional<CadastrarUserModel> findBySocialname(String socialname) {
+        return cadastrarUserRepository.findBySocialname(socialname);
+    }
+
 }

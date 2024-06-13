@@ -28,6 +28,7 @@ public class MoviesController {
     public ResponseEntity<Movie> saveMovie(@RequestBody Movie movie) {
         return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.save(movie));
     }
+
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findAll());
@@ -35,7 +36,7 @@ public class MoviesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(moviesService.findById(id.toString()));
     }
 
     @GetMapping("/category/{category}")
@@ -44,13 +45,13 @@ public class MoviesController {
     }
 
     @PostMapping("/{movieId}/favorite/{userId}")
-    public ResponseEntity<Movie> favoriteMovie(@PathVariable UUID movieId, @PathVariable UUID userId) {
+    public ResponseEntity<Movie> favoriteMovie(@PathVariable String movieId, @PathVariable String userId) {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.favoriteMovie(movieId, userId));
     }
 
     @GetMapping("/{id}/watch")
     public ResponseEntity<String> watchMovie(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.getMovieVideoUrl(id));
+        return ResponseEntity.status(HttpStatus.OK).body(moviesService.getMovieVideoUrl(id.toString()));
     }
 
     @GetMapping("/user/{userId}/list")

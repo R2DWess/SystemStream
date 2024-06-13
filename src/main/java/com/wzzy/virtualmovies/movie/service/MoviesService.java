@@ -39,13 +39,13 @@ public class MoviesService {
         return movieRepository.findAll();
     }
 
-    public Movie findById(UUID id) {
-        return movieRepository.findById(id).orElse(null);
+    public Movie findById(String id) {
+        return movieRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
-    public Movie favoriteMovie(UUID movieId, UUID userId) {
+    public Movie favoriteMovie(String movieId, String userId) {
         Movie movie = findById(movieId);
-        CadastrarUserModel user = userRepository.findById(userId).orElse(null);
+        CadastrarUserModel user = userRepository.findById(UUID.fromString(userId)).orElse(null);
         if (movie != null && user != null) {
             user.getFavoriteMovies().add(movie);
             userRepository.save(user);
@@ -53,9 +53,9 @@ public class MoviesService {
         return movie;
     }
 
-    public Movie addMovieToList(UUID movieId, UUID userId) {
+    public Movie addMovieToList(String movieId, String userId) {
         Movie movie = findById(movieId);
-        CadastrarUserModel user = userRepository.findById(userId).orElse(null);
+        CadastrarUserModel user = userRepository.findById(UUID.fromString(userId)).orElse(null);
         if (movie != null && user != null) {
             user.getMovieList().add(movie);
             userRepository.save(user);
@@ -63,7 +63,7 @@ public class MoviesService {
         return movie;
     }
 
-    public String getMovieVideoUrl(UUID id) {
+    public String getMovieVideoUrl(String id) {
         Movie movie = findById(id);
         if (movie != null) {
             return movie.getVideoUrl();
@@ -74,6 +74,7 @@ public class MoviesService {
     public List<Movie> findByCategory(String category) {
         return movieRepository.findByCategory(category);
     }
+
     public List<Movie> findByTitulo(String titulo) {
         return movieRepository.findByTitulo(titulo);
     }

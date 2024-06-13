@@ -64,14 +64,15 @@ public class CadastrarUserController {
         return ResponseEntity.status(HttpStatus.OK).body(cadastrarUserService.findAll());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneUser(@PathVariable(value = "id") UUID id) {
-        Optional<CadastrarUserModel> userModelOptional = cadastrarUserService.findById(id);
+    @GetMapping("/{socialname}")
+    public ResponseEntity<Object> getUserBySocialname(@PathVariable(value = "socialname") String socialname) {
+        Optional<CadastrarUserModel> userModelOptional = cadastrarUserService.findBySocialname(socialname);
         if (!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
         }
         return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable(value = "id") UUID id) {

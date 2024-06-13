@@ -4,16 +4,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
 public class Movie {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     private String titulo;
     private int ano;
@@ -31,7 +29,7 @@ public class Movie {
     private List<String> atores;
 
     private String poster;
-    private int metascore;
+    private Integer metascore;
     private String videoUrl;
     private String category;
 }
