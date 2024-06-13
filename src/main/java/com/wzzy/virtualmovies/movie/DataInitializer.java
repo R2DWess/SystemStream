@@ -35,21 +35,21 @@ public class DataInitializer {
             iAmLegend.setDiretor("Francis Lawrence");
             iAmLegend.setRoteiristas(Arrays.asList("Mark Protosevich", "Akiva Goldsman", "Richard Matheson", "John William Corrington", "Joyce Hooper Corrington"));
             iAmLegend.setAtores(Arrays.asList("Will Smith", "Alice Braga", "Charlie Tahan", "Salli Richardson-Whitfield"));
-            iAmLegend.setPoster("https://xl.movieposterdb.com/07_12/2007/480249/xl_480249_66680d6b.jpgs");
+            iAmLegend.setPoster("https://xl.movieposterdb.com/07_12/2007/480249/xl_480249_66680d6b.jpg");
             iAmLegend.setMetascore(65);
 
             moviesService.save(iAmLegend);
 
             Movie trezentos = new Movie();
-            iAmLegend.setTitulo("300");
-            iAmLegend.setAno(2006);
-            iAmLegend.setDuracaoEmMinutos(117);
-            iAmLegend.setGenero(Arrays.asList("Ação", "Drama", "Fantasia"));
-            iAmLegend.setDiretor("Zack Snyder");
-            iAmLegend.setRoteiristas(Arrays.asList("Zack Snyder", "Kurt Johnstad", "Michael Gordon", "Frank Miller", "Lynn Varley"));
-            iAmLegend.setAtores(Arrays.asList("Gerard Butler", "Lena Headey", "Dominic West", "David Wenham"));
-            iAmLegend.setPoster("https://xl.movieposterdb.com/07_09/2006/0416449/xl_0416449_ebba784f.jpg");
-            iAmLegend.setMetascore(52);
+            trezentos.setTitulo("300");
+            trezentos.setAno(2006);
+            trezentos.setDuracaoEmMinutos(117);
+            trezentos.setGenero(Arrays.asList("Ação", "Drama", "Fantasia"));
+            trezentos.setDiretor("Zack Snyder");
+            trezentos.setRoteiristas(Arrays.asList("Zack Snyder", "Kurt Johnstad", "Michael Gordon", "Frank Miller", "Lynn Varley"));
+            trezentos.setAtores(Arrays.asList("Gerard Butler", "Lena Headey", "Dominic West", "David Wenham"));
+            trezentos.setPoster("https://xl.movieposterdb.com/07_09/2006/0416449/xl_0416449_ebba784f.jpg");
+            trezentos.setMetascore(52);
 
             moviesService.save(trezentos);
 
@@ -88,6 +88,7 @@ public class DataInitializer {
             pursuitOfHappyness.setRoteiristas(Arrays.asList("Steve Conrad"));
             pursuitOfHappyness.setAtores(Arrays.asList("Will Smith", "Jaden Smith"));
             pursuitOfHappyness.setPoster("https://xl.movieposterdb.com/07_12/2006/454921/xl_454921_9d11428d.jpg");
+            pursuitOfHappyness.setMetascore(64);
 
             moviesService.save(pursuitOfHappyness);
 
@@ -100,6 +101,7 @@ public class DataInitializer {
             beforeSunrise.setRoteiristas(Arrays.asList("Richard Linklater", "Kim Krizan"));
             beforeSunrise.setAtores(Arrays.asList("Ethan Hawke", "Julie Delpy"));
             beforeSunrise.setPoster("https://xl.movieposterdb.com/23_02/1995/112471/xl_before-sunrise-movie-poster_1fb3d59d.jpg");
+            beforeSunrise.setMetascore(77);
 
             moviesService.save(beforeSunrise);
 
@@ -112,6 +114,7 @@ public class DataInitializer {
             aboutTime.setRoteiristas(Arrays.asList("Richard Curtis"));
             aboutTime.setAtores(Arrays.asList("Domhnall Gleeson", "Rachel McAdams"));
             aboutTime.setPoster("https://xl.movieposterdb.com/13_06/2013/2194499/xl_2194499_c0435606.jpg");
+            aboutTime.setMetascore(68);
 
             moviesService.save(aboutTime);
 
@@ -124,6 +127,7 @@ public class DataInitializer {
             prideAndPrejudice.setRoteiristas(Arrays.asList("Jane Austen", "Deborah Moggach"));
             prideAndPrejudice.setAtores(Arrays.asList("Keira Knightley", "Matthew Macfadyen"));
             prideAndPrejudice.setPoster("https://m.media-amazon.com/images/S/pv-target-images/e5a295dcc5441e9a1fd5907e191578d510ed7f8be46c5e85a5dd51354bfd3cb6.jpg");
+            prideAndPrejudice.setMetascore(82);
 
             moviesService.save(prideAndPrejudice);
 
@@ -136,6 +140,7 @@ public class DataInitializer {
             matrix.setRoteiristas(Arrays.asList("Lana Wachowski", "Lilly Wachowski"));
             matrix.setAtores(Arrays.asList("Keanu Reeves", "Laurence Fishburne"));
             matrix.setPoster("https://xl.movieposterdb.com/06_11/1999/0133093/xl_145384_0133093_fd241228.jpg");
+            matrix.setMetascore(87);
 
             moviesService.save(matrix);
 
@@ -148,18 +153,20 @@ public class DataInitializer {
             spiritedAway.setRoteiristas(Arrays.asList("Hayao Miyazaki"));
             spiritedAway.setAtores(Arrays.asList("Rumi Hiiragi", "Miyu Irino"));
             spiritedAway.setPoster("https://xl.movieposterdb.com/14_05/2001/245429/xl_245429_233c79aa.jpg");
+            spiritedAway.setMetascore(96);
 
             moviesService.save(spiritedAway);
 
             Movie cars = new Movie();
-            spiritedAway.setTitulo("Carros");
-            spiritedAway.setAno(2006);
-            spiritedAway.setDuracaoEmMinutos(117);
-            spiritedAway.setGenero(Arrays.asList("Animação", "Aventura", "Comédia"));
-            spiritedAway.setDiretor("John Lasseter, Joe Ranft");
-            spiritedAway.setRoteiristas(Arrays.asList("John Lasseter, Joe Ranft"));
-            spiritedAway.setAtores(Arrays.asList("Owen Wilson", "Paul Newman"));
-            spiritedAway.setPoster("https://xl.movieposterdb.com/15_12/2006/317219/xl_317219_18797820.jpg");
+            cars.setTitulo("Carros");
+            cars.setAno(2006);
+            cars.setDuracaoEmMinutos(117);
+            cars.setGenero(Arrays.asList("Animação", "Aventura", "Comédia"));
+            cars.setDiretor("John Lasseter, Joe Ranft");
+            cars.setRoteiristas(Arrays.asList("John Lasseter, Joe Ranft"));
+            cars.setAtores(Arrays.asList("Owen Wilson", "Paul Newman"));
+            cars.setPoster("https://xl.movieposterdb.com/15_12/2006/317219/xl_317219_18797820.jpg");
+            cars.setMetascore(73);
 
             moviesService.save(cars);
 
@@ -172,6 +179,7 @@ public class DataInitializer {
             parasite.setRoteiristas(Arrays.asList("Bong Joon-ho", "Han Jin-won"));
             parasite.setAtores(Arrays.asList("Song Kang-ho", "Lee Sun-kyun"));
             parasite.setPoster("https://xl.movieposterdb.com/21_11/2019/6751668/xl_6751668_0d0409c5.jpg");
+            parasite.setMetascore(96);
 
             moviesService.save(parasite);
 
@@ -184,6 +192,7 @@ public class DataInitializer {
             arrival.setRoteiristas(Arrays.asList("Eric Heisserer"));
             arrival.setAtores(Arrays.asList("Amy Adams", "Jeremy Renner"));
             arrival.setPoster("https://xl.movieposterdb.com/22_10/2016/2543164/xl_arrival-movie-poster_a18b5408.jpg");
+            arrival.setMetascore(81);
 
             moviesService.save(arrival);
 
@@ -196,6 +205,7 @@ public class DataInitializer {
             childrenOfMen.setRoteiristas(Arrays.asList("Alfonso Cuarón", "Timothy J. Sexton"));
             childrenOfMen.setAtores(Arrays.asList("Clive Owen", "Julianne Moore"));
             childrenOfMen.setPoster("https://xl.movieposterdb.com/13_03/2006/206634/xl_206634_af29190c.jpg");
+            childrenOfMen.setMetascore(84);
 
             moviesService.save(childrenOfMen);
 
@@ -208,6 +218,7 @@ public class DataInitializer {
             bladeRunner2049.setRoteiristas(Arrays.asList("Hampton Fancher", "Michael Green"));
             bladeRunner2049.setAtores(Arrays.asList("Ryan Gosling", "Harrison Ford"));
             bladeRunner2049.setPoster("https://xl.movieposterdb.com/23_02/2018/8151756/xl_blade-runner-2049-designing-the-world-of-blade-runner-2049-movie-poster_078b7954.jpg");
+            bladeRunner2049.setMetascore(81);
 
             moviesService.save(bladeRunner2049);
 
@@ -220,6 +231,7 @@ public class DataInitializer {
             her.setRoteiristas(Arrays.asList("Spike Jonze"));
             her.setAtores(Arrays.asList("Joaquin Phoenix", "Scarlett Johansson"));
             her.setPoster("https://xl.movieposterdb.com/13_11/2013/1798709/xl_1798709_48f9f547.jpg");
+            her.setMetascore(91);
 
             moviesService.save(her);
 
@@ -232,6 +244,7 @@ public class DataInitializer {
             punchDrunkLove.setRoteiristas(Arrays.asList("Paul Thomas Anderson"));
             punchDrunkLove.setAtores(Arrays.asList("Adam Sandler", "Emily Watson"));
             punchDrunkLove.setPoster("https://xl.movieposterdb.com/22_01/2002/272338/xl_272338_bb20bcda.jpg");
+            punchDrunkLove.setMetascore(78);
 
             moviesService.save(punchDrunkLove);
 
@@ -244,6 +257,7 @@ public class DataInitializer {
             borat.setRoteiristas(Arrays.asList("Sacha Baron Cohen", "Anthony Hines", "Peter Baynham", "Dan Mazer"));
             borat.setAtores(Arrays.asList("Sacha Baron Cohen", "Ken Davitian", "Luenell"));
             borat.setPoster("https://xl.movieposterdb.com/07_10/2006/443453/xl_443453_7ea199e5.jpg");
+            borat.setMetascore(89);
 
             moviesService.save(borat);
 
@@ -256,6 +270,7 @@ public class DataInitializer {
             fiftyFifty.setRoteiristas(Arrays.asList("Will Reiser"));
             fiftyFifty.setAtores(Arrays.asList("Joseph Gordon-Levitt", "Seth Rogen", "Anna Kendrick"));
             fiftyFifty.setPoster("https://xl.movieposterdb.com/21_02/2011/1306980/xl_1306980_1ac06c4e.jpg");
+            fiftyFifty.setMetascore(72);
 
             moviesService.save(fiftyFifty);
 
@@ -268,9 +283,9 @@ public class DataInitializer {
             rememberTheTitans.setRoteiristas(Arrays.asList("Gregory Allen Howard"));
             rememberTheTitans.setAtores(Arrays.asList("Denzel Washington", "Will Patton", "Wood Harris"));
             rememberTheTitans.setPoster("https://xl.movieposterdb.com/08_09/2000/210945/xl_210945_d59653b1.jpg");
+            rememberTheTitans.setMetascore(48);
 
             moviesService.save(rememberTheTitans);
-
         };
     }
 }

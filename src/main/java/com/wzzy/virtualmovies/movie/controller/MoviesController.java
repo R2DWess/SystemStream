@@ -36,7 +36,7 @@ public class MoviesController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.findById(id.toString()));
+        return ResponseEntity.status(HttpStatus.OK).body(moviesService.findById(id));
     }
 
     @GetMapping("/category/{category}")
@@ -44,14 +44,20 @@ public class MoviesController {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findByCategory(category));
     }
 
-    @PostMapping("/{movieId}/favorite/{userId}")
-    public ResponseEntity<Movie> favoriteMovie(@PathVariable String movieId, @PathVariable String userId) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.favoriteMovie(movieId, userId));
+    @PostMapping("/{socialName}/favorite/{titulo}")
+    public ResponseEntity<String> favoriteMovie(@PathVariable String socialName, @PathVariable String titulo) {
+        boolean result = moviesService.favoriteMovieBySocialNameAndTitle(socialName, titulo);
+        if (result) {
+            return ResponseEntity.status(HttpStatus.OK).body("Movie favorited successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User or Movie not found");
+        }
     }
+
 
     @GetMapping("/{id}/watch")
     public ResponseEntity<String> watchMovie(@PathVariable UUID id) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.getMovieVideoUrl(id.toString()));
+        return ResponseEntity.status(HttpStatus.OK).body(moviesService.getMovieVideoUrl(id));
     }
 
     @GetMapping("/user/{userId}/list")

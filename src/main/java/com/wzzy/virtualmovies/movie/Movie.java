@@ -2,6 +2,7 @@ package com.wzzy.virtualmovies.movie;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
     private String titulo;
@@ -29,7 +32,7 @@ public class Movie {
     private List<String> atores;
 
     private String poster;
-    private Integer metascore;
+    private int metascore;
     private String videoUrl;
     private String category;
 }

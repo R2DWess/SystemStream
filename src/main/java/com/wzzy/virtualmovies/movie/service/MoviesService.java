@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,23 +40,24 @@ public class MoviesService {
         return movieRepository.findAll();
     }
 
-    public Movie findById(String id) {
-        return movieRepository.findById(UUID.fromString(id)).orElse(null);
+    public Movie findById(UUID id) {
+        return movieRepository.findById(id).orElse(null);
     }
 
-    public Movie favoriteMovie(String movieId, String userId) {
-        Movie movie = findById(movieId);
-        CadastrarUserModel user = userRepository.findById(UUID.fromString(userId)).orElse(null);
-        if (movie != null && user != null) {
+    public Movie favoriteMovie(String socialName, String titulo) {
+        CadastrarUserModel user = userRepository.findBySocialname(socialName).orElse(null);
+        Movie movie = movieRepository.findByTitulo(titulo).stream().findFirst().orElse(null);
+        if (user != null && movie != null) {
             user.getFavoriteMovies().add(movie);
             userRepository.save(user);
+            return movie;
         }
-        return movie;
+        return null;
     }
 
-    public Movie addMovieToList(String movieId, String userId) {
+    public Movie addMovieToList(UUID movieId, UUID userId) {
         Movie movie = findById(movieId);
-        CadastrarUserModel user = userRepository.findById(UUID.fromString(userId)).orElse(null);
+        CadastrarUserModel user = userRepository.findById(userId).orElse(null);
         if (movie != null && user != null) {
             user.getMovieList().add(movie);
             userRepository.save(user);
@@ -63,13 +65,29 @@ public class MoviesService {
         return movie;
     }
 
-    public String getMovieVideoUrl(String id) {
+    public String getMovieVideoUrl(UUID id) {
         Movie movie = findById(id);
         if (movie != null) {
             return movie.getVideoUrl();
         }
         return null;
     }
+
+    public boolean favoriteMovieBySocialNameAndTitle(String socialName, String titulo) {
+        Optional<CadastrarUserModel> userOptional = userRepository.findBySocialname(socialName);
+        if (userOptional.isPresent()) {
+            CadastrarUserModel user = userOptional.get();
+            List<Movie> movies = movieRepository.findByTitulo(titulo);
+            if (!movies.isEmpty()) {
+                Movie movie = movies.get(0);
+                user.getFavoriteMovies().add(movie);
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public List<Movie> findByCategory(String category) {
         return movieRepository.findByCategory(category);
