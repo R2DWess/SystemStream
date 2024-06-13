@@ -16,26 +16,25 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/cadastrar")
+@RequestMapping("/usuarios")
 public class CadastrarUserController {
 
-    final
-    CadastrarUserService cadastrarUserService;
+    private final CadastrarUserService cadastrarUserService;
+    private final LoginUserService loginUserService;
 
     @Autowired
-    LoginUserService loginUserService;
-
-    public CadastrarUserController(CadastrarUserService cadastrarUserService) {
+    public CadastrarUserController(CadastrarUserService cadastrarUserService, LoginUserService loginUserService) {
         this.cadastrarUserService = cadastrarUserService;
+        this.loginUserService = loginUserService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody CadastrarUserModel cadastrarUserDto) {
-        boolean isRegistered = loginUserService.cadastrarUser(cadastrarUserDto);
+    @PostMapping("/cadastrar")
+    public ResponseEntity<String> register(@RequestBody CadastrarUserModel user) {
+        boolean isRegistered = cadastrarUserService.cadastrarUser(user);
         if (isRegistered) {
-            return ResponseEntity.ok("Registration successful");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado com sucesso.");
         } else {
-            return ResponseEntity.status(400).body("Registration failed");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já existe.");
         }
     }
 

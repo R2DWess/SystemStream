@@ -3,6 +3,7 @@ package com.wzzy.virtualmovies.usuarios.cadastrar.services;
 import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtualmovies.usuarios.cadastrar.repository.CadastrarUserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +50,21 @@ public class CadastrarUserService {
 
     public Optional<CadastrarUserModel> findBySocialname(String socialname) {
         return cadastrarUserRepository.findBySocialname(socialname);
+    }
+
+    @Transactional
+    public boolean cadastrarUser(CadastrarUserModel newUser) {
+        if (!existsByEmail(newUser.getEmail()) && !existsByCpf(newUser.getCpf())) {
+            CadastrarUserModel cadastrarUserModel = new CadastrarUserModel();
+            BeanUtils.copyProperties(newUser, cadastrarUserModel);
+            try {
+                save(cadastrarUserModel);
+                return true;
+            } catch (Exception e) {
+                throw new RuntimeException("Erro ao cadastrar usuário", e);
+            }
+        }
+        return false;
     }
 
 }
