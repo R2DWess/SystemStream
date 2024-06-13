@@ -3,6 +3,7 @@ package com.wzzy.virtualmovies.usuarios.cadastrar.controller;
 import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtualmovies.usuarios.cadastrar.services.CadastrarUserService;
 import com.wzzy.virtualmovies.usuarios.login.services.LoginUserService;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class CadastrarUserControllerTest {
     private LoginUserService loginUserService;
 
     @Test
+    @DisplayName("Teste de sucesso no registro do usuário")
     public void testRegisterUser_Success() throws Exception {
         Mockito.when(cadastrarUserService.cadastrarUser(any(CadastrarUserModel.class))).thenReturn(true);
 
@@ -38,6 +40,7 @@ public class CadastrarUserControllerTest {
     }
 
     @Test
+    @DisplayName("Teste de falha no registro do usuário")
     public void testRegisterUser_Failure() throws Exception {
         Mockito.when(cadastrarUserService.cadastrarUser(any(CadastrarUserModel.class))).thenReturn(false);
 

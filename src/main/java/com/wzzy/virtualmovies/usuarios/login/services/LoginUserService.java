@@ -29,6 +29,7 @@ public class LoginUserService {
     public boolean existsByCpf(String cpf){
         return loginUserRepository.existsByCpf(cpf);
     }
+
     public List<LoginUserModel> findAll() {
         return loginUserRepository.findAll();
     }
@@ -44,6 +45,7 @@ public class LoginUserService {
     public boolean existsBySocialname(String socialname){
         return loginUserRepository.existsBySocialname(socialname);
     }
+
     @Transactional
     public void delete(LoginUserModel userModel) {
         loginUserRepository.delete(userModel);
@@ -55,6 +57,14 @@ public class LoginUserService {
             return user.get().getPassword().equals(password);
         }
         return false;
+    }
+
+    public Optional<LoginUserModel> login(String email, String password) {
+        Optional<LoginUserModel> user = loginUserRepository.findByEmail(email);
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
+            return user;
+        }
+        return Optional.empty();
     }
 
     @Transactional

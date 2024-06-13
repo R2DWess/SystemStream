@@ -1,36 +1,28 @@
 package com.wzzy.virtualmovies.usuarios.login.controller;
 
+import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
+import com.wzzy.virtualmovies.usuarios.login.model.LoginUserModel;
 import com.wzzy.virtualmovies.usuarios.login.services.LoginUserService;
-import com.wzzy.virtualmovies.usuarios.login.model.LoginRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/login")
 public class LoginUserController {
 
-    private final LoginUserService loginUserService;
+    @Autowired
+    private LoginUserService loginUserService;
 
-    public LoginUserController(LoginUserService loginUserService) {
-        this.loginUserService = loginUserService;
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest) {
-        boolean isValid = loginUserService.validateLogin(
-                loginRequest.getEmail(),
-                loginRequest.getPassword());
-        Map<String, String> response = new HashMap<>();
-        if (isValid) {
-            response.put("message", "Login efetuado com sucesso");
-            return ResponseEntity.ok(response);
+    @PostMapping
+    public ResponseEntity<LoginUserModel> loginUser(@RequestBody CadastrarUserModel loginRequest) {
+        Optional<LoginUserModel> user = loginUserService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
         } else {
-            response.put("message", "Invalid credentials");
-            return ResponseEntity.status(401).body(response);
+            return ResponseEntity.status(401).build();
         }
     }
 }

@@ -1,5 +1,6 @@
-package com.wzzy.virtualmovies.movie;
+package com.wzzy.virtualmovies.movie.dto;
 
+import com.wzzy.virtualmovies.movie.Movie;
 import com.wzzy.virtualmovies.movie.service.MoviesService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
