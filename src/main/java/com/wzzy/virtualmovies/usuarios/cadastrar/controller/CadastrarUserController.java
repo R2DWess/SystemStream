@@ -38,6 +38,7 @@ public class CadastrarUserController {
         }
     }
 
+
     @PostMapping
     public ResponseEntity<Object> saveUser(@RequestBody @Validated CadastrarUserModel cadastrarUserModel) {
 

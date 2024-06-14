@@ -57,6 +57,7 @@ public class CadastrarUserService {
         if (!existsByEmail(newUser.getEmail()) && !existsByCpf(newUser.getCpf())) {
             CadastrarUserModel cadastrarUserModel = new CadastrarUserModel();
             BeanUtils.copyProperties(newUser, cadastrarUserModel);
+            cadastrarUserModel.setIsAdmin(newUser.isAdmin());
             try {
                 save(cadastrarUserModel);
                 return true;

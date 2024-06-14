@@ -13,3 +13,4 @@ public interface CadastrarUserRepository extends JpaRepository<CadastrarUserMode
 
     Optional<CadastrarUserModel> findBySocialname(String socialname);
 }
+

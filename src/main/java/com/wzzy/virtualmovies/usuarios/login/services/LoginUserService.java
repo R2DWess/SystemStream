@@ -1,6 +1,7 @@
 package com.wzzy.virtualmovies.usuarios.login.services;
 
 import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
+import com.wzzy.virtualmovies.usuarios.login.model.LoginResponseDto;
 import com.wzzy.virtualmovies.usuarios.login.model.LoginUserModel;
 import com.wzzy.virtualmovies.usuarios.login.repository.LoginUserRepository;
 import jakarta.transaction.Transactional;
@@ -59,10 +60,13 @@ public class LoginUserService {
         return false;
     }
 
-    public Optional<LoginUserModel> login(String email, String password) {
+    public Optional<LoginResponseDto> login(String email, String password) {
         Optional<LoginUserModel> user = loginUserRepository.findByEmail(email);
         if (user.isPresent() && user.get().getPassword().equals(password)) {
-            return user;
+            LoginResponseDto loginResponse = new LoginResponseDto();
+            BeanUtils.copyProperties(user.get(), loginResponse);
+            loginResponse.setAdmin(user.get().isAdmin());
+            return Optional.of(loginResponse);
         }
         return Optional.empty();
     }
