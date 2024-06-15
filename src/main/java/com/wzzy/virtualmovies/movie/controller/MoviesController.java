@@ -87,9 +87,9 @@ public class MoviesController {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findAllGenres());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMovieById(@PathVariable UUID id) {
-        moviesService.deleteById(id);
+    @DeleteMapping("/title/{title}")
+    public ResponseEntity<Void> deleteMovieByTitulo(@PathVariable String title) {
+        moviesService.deleteByTitulo(title);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

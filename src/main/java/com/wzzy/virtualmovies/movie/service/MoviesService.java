@@ -5,6 +5,7 @@ import com.wzzy.virtualmovies.movie.repository.MovieRepository;
 import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtualmovies.usuarios.cadastrar.repository.CadastrarUserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,11 @@ public class MoviesService {
 
     public void deleteById(UUID id) {
         movieRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteByTitulo(String titulo) {
+        movieRepository.deleteByTitulo(titulo);
     }
 
     public Movie favoriteMovie(String socialName, String titulo) {

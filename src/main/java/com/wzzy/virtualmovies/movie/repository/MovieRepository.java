@@ -13,4 +13,5 @@ public interface MovieRepository extends JpaRepository<Movie, UUID> {
     List<Movie> findByAno(int ano);
     List<Movie> findByGenero(String genero);
     List<Movie> findByMetascoreGreaterThan(int metascore);
+    void deleteByTitulo(String titulo);
 }
