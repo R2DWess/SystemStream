@@ -54,7 +54,6 @@ public class MoviesController {
         }
     }
 
-
     @GetMapping("/{id}/watch")
     public ResponseEntity<String> watchMovie(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.getMovieVideoUrl(id));
@@ -86,5 +85,11 @@ public class MoviesController {
     @GetMapping("/generos")
     public ResponseEntity<List<String>> getAllGenres() {
         return ResponseEntity.status(HttpStatus.OK).body(moviesService.findAllGenres());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovieById(@PathVariable UUID id) {
+        moviesService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

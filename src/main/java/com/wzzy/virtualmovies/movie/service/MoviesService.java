@@ -4,7 +4,6 @@ import com.wzzy.virtualmovies.movie.Movie;
 import com.wzzy.virtualmovies.movie.repository.MovieRepository;
 import com.wzzy.virtualmovies.usuarios.cadastrar.model.CadastrarUserModel;
 import com.wzzy.virtualmovies.usuarios.cadastrar.repository.CadastrarUserRepository;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +11,13 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@Data
 @Service
 public class MoviesService {
 
     final MovieRepository movieRepository;
     final CadastrarUserRepository userRepository;
 
-    public MoviesService(MovieRepository movieRepository, CadastrarUserRepository userRepository){
+    public MoviesService(MovieRepository movieRepository, CadastrarUserRepository userRepository) {
         this.movieRepository = movieRepository;
         this.userRepository = userRepository;
     }
@@ -42,6 +40,10 @@ public class MoviesService {
 
     public Movie findById(UUID id) {
         return movieRepository.findById(id).orElse(null);
+    }
+
+    public void deleteById(UUID id) {
+        movieRepository.deleteById(id);
     }
 
     public Movie favoriteMovie(String socialName, String titulo) {
@@ -87,7 +89,6 @@ public class MoviesService {
         }
         return false;
     }
-
 
     public List<Movie> findByCategory(String category) {
         return movieRepository.findByCategory(category);

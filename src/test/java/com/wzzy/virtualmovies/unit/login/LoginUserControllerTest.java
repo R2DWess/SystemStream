@@ -1,6 +1,7 @@
 package com.wzzy.virtualmovies.unit.login;
 
 import com.wzzy.virtualmovies.usuarios.login.controller.LoginUserController;
+import com.wzzy.virtualmovies.usuarios.login.model.LoginResponseDto;
 import com.wzzy.virtualmovies.usuarios.login.services.LoginUserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
@@ -34,8 +37,7 @@ public class LoginUserControllerTest {
 
     @Test
     public void testLogin_Success() throws Exception {
-        when(loginUserService.validateLogin(anyString(), anyString())).thenReturn(true);
-
+        when(loginUserService.login(anyString(), anyString())).thenReturn(Optional.of(new LoginResponseDto()));
         mockMvc.perform(post("/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"email\": \"test@example.com\", \"password\": \"password\"}"))

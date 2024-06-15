@@ -49,10 +49,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
             <version>1.18.32</version>
         </dependency>
     </dependencies>
@@ -73,6 +69,11 @@
                     <targetTests>
                         <param>com.wzzy.*</param>
                     </targetTests>
+                    <mutationThreshold>80</mutationThreshold>
+                    <coverageThreshold>80</coverageThreshold>
+                    <outputFormats>
+                        <param>HTML</param>
+                    </outputFormats>
                 </configuration>
             </plugin>
         </plugins>
